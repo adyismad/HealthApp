@@ -2,7 +2,7 @@
 
 ## Overview
 
-Frainer is an Android app which used to find gym buddies. The initial idea is that a user can signup, update their profile, add preferences for gym partner, then see the list of gym partners within their gym.
+Frainer is an Android app that is used to find gym buddies. The initial idea is that a user can signup, update their profile, add preferences for gym partner, then see the list of gym partners within their gym.
 ## Related Work
 
 The closest application which I found on the internet for Android was Fittup, the difference between Frainer and Fittup is that Fittup is more generic and used for many different activities and is not more personal. Frainer on the other hand will target to match buddies within the same gym and will only list users who go to the same gym and match the preferences.
