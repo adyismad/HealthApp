@@ -34,8 +34,8 @@ The closest application which I found on the internet for Android was Fittup, th
 **Acceptance tests:**
 
 1. Given the user has the application installed in their device, when user tap on the app icon, then a new login screen will be displayed.
-2. Given the user is able to see the login screen, user will be able to see a three image slideshow on the screen.
-3. Given the user is able to see the login screen, user will be able to enter the username and password to login and click the “submit” button to finish login.
+2. Given the user is able to see the login screen, user will be able to see a four image slideshow on the screen.
+3. Given the user is able to see the login screen, user will be able to enter the username and password to login and click the “login” button to finish login.
 
 **Title**
 
@@ -43,7 +43,7 @@ The closest application which I found on the internet for Android was Fittup, th
 
 **Description**
 
-1. As a user, I want to add a signup screen, so that I can signup for a new account and enter my preferences.
+1. As a user, I want to add a signup screen, so that I can signup for a new account and enter their details.
 
 **Acceptance tests**:
 
@@ -187,24 +187,52 @@ The closest application which I found on the internet for Android was Fittup, th
 
 |Iteration | Application Requirements (E/D/O) | Android Components and Features|
 |---|---|---|
-|1|Initial project setup,Login screen, Signup screen  |Activity, Fragments, Shared preferences, Circle Image Library, Architecture components |
-|2|My Frainers, Logout |Fragments, Imageviews, Progressbar, Glide Library |
+|1|Initial project setup,Login screen, Signup screen  |Activity, Fragments,Circle Image Library, Architecture components |
+|2|My Frainers, Logout |Fragments, Imageviews, Progressbar, Glide Library, Shared preferences,  |
 |3|My Profile, Edit profile, Pending requests |Bottom navigation, architecture components, Shared preferences, Fragment, Material Design |
 |4|Notifications |Fragment |
 |5|Refactor |Code cleanup, remove hard coded string, values, etc. |
 
 ## Requirement Analysis and Testing 
 
-*(In Iteration 1-5, for each requirement you have worked on in this iteration, please give a detailed description, completion status (completed, or partially completed) and show the testing results if completed or partially completed, such as screenshots of the application screens or log info.) Please also specify if this requirement is a new requirement or a requirement you had started in previous iterations. Please also specify what device do you use for testing )*
+**Iteration 1 **
 
+I have worked on the following in this iteration:
+- Kotlin, Architecture components, Navigation
+- Added SharedPreference handling class.
+- Login screen UI
+- Signup screen UI
+- Initial project setup
+- I was not able to complete the Edit text validation in this iteration and plan on doing it in the next iteration.
+- I also need to handle saving the data like username and password and also create user account and store its data which i plan to do in next iteration.
 
 ## Design and Implementation
 
-*(In Iteration 1-5, please describe Android components and features you have used in this iteration to implement the above requirements in your application. For each feature you used, provide a brief description and supporting evidences, such as sample code, log info, or screenshot(s) of execution results. Please specify mapped requirements and files in your project.)*
+** Iteration 1 **
+
+- I have used the following components:
+
+1. Login Screen - EditText, TextInputLayout, Button, TextView, ImageSlider Library
+2. Signup screen - Image Picker Library, Radio Button, RadioGroup, EditText, TextInputLayout
+3. Screenshots
+![login.png](screenshots/iteration1/login.png)
+![signup.png](screenshots/iteration1/signup.png)
+
 
 ## Project Structure
-*(In Iteration 1-5, please provide a screenshot of your project structure, and describe what files are modified, added or deleted since the previous iteration.)*
+** Iteration 1 **
 
+![classes.png](screenshots/iteration1/classes.png)
+![layout.png](screenshots/iteration1/layout.png)
+
+I updated the MainActivity to be Kotlin instead of java and added fragment in its layout for hosting all the screens. I added code to handle the navigation in MainActivity.  
+I created two separate package for login and signup and respective fragment for each screen. I added a navigation.xml inside the resource folder to handle the navigation between fragments.  
+I updated the layout for each screen  login_fragment and signup_fragment. Added dependendy to handle architecture components and support design.
 ## References
 
 *(Please list all your references here)*
+
+- https://github.com/smarteist/Android-Image-Slider
+- https://github.com/hdodenhof/CircleImageView
+- https://github.com/Dhaval2404/ImagePicker
+
