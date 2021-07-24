@@ -5,18 +5,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import com.google.android.material.textfield.TextInputEditText
 import com.sandeep.frainer.login.view.SliderAdapter
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
+import edu.bu.metcs.myproject.FrainerApplication
 import edu.bu.metcs.myproject.R
+import edu.bu.metcs.myproject.SharePreferenceData
 import edu.bu.metcs.myproject.login.model.SliderItem
+import edu.bu.metcs.myproject.user.LoggedInUser
 
 
 class LoginFragment : Fragment() {
+
+    private val userViewModel: LoginViewModel by viewModels {
+        LoginViewModelFactory((activity?.application as FrainerApplication).repository)
+    }
+
+    private lateinit var userNameEt: TextInputEditText
+    private lateinit var passwordEt: TextInputEditText
+    private lateinit var registerBtn: AppCompatTextView
+
     private var sliderView: SliderView? = null
     private lateinit var adapter: SliderAdapter
 
@@ -33,6 +49,10 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = SliderAdapter(context)
+
+        userNameEt = view.findViewById(R.id.userEt)
+        passwordEt = view.findViewById(R.id.passEt)
+        registerBtn = view.findViewById(R.id.registerBtn)
 
         sliderView?.apply {
             setSliderAdapter(adapter)
@@ -60,8 +80,27 @@ class LoginFragment : Fragment() {
             adapter.addItem(item)
         }
 
-        view.findViewById<AppCompatTextView>(R.id.registerBtn).setOnClickListener {
+        registerBtn.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment)
+        }
+
+        view.findViewById<AppCompatButton>(R.id.loginBtn).setOnClickListener {
+
+            if (userNameEt.text?.isNotEmpty() == true && passwordEt.text?.isNotEmpty() == true) {
+                userViewModel.getUser(userNameEt.text.toString(), passwordEt.text.toString())
+            }
+        }
+
+        activity?.let {
+            userViewModel.user.observe(it, {
+
+                if (it != null) {
+                    SharePreferenceData.saveObject(context, "logged_user", LoggedInUser(it.userName, it.password))
+                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_myFrainerFragment)
+                } else {
+                    Toast.makeText(context, "Please correct your username and password", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 }

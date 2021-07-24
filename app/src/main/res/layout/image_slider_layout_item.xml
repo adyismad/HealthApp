@@ -15,8 +15,7 @@
         android:id="@+id/fl_shadow_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/bg_overlay">
+        android:layout_gravity="bottom">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_auto_image_slider"

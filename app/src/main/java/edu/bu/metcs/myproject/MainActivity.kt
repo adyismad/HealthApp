@@ -11,6 +11,13 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
                 supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navHostFragment.navController
+
+        val graphInflater = navHostFragment.navController.navInflater
+        val navGraph = graphInflater.inflate(R.navigation.nav_graph)
+        val navController = navHostFragment.navController
+
+        val destination = if (SharePreferenceData.getObject(this, "logged_user") != null) R.id.myFrainerFragment else R.id.loginFragment
+        navGraph.startDestination = destination
+        navController.graph = navGraph
     }
 }

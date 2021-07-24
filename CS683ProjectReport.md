@@ -195,7 +195,7 @@ The closest application which I found on the internet for Android was Fittup, th
 
 ## Requirement Analysis and Testing 
 
-**Iteration 1 **
+**Iteration 1**
 
 I have worked on the following in this iteration:
 - Kotlin, Architecture components, Navigation
@@ -208,7 +208,7 @@ I have worked on the following in this iteration:
 
 ## Design and Implementation
 
-** Iteration 1 **
+**Iteration 1**
 
 - I have used the following components:
 
@@ -220,7 +220,8 @@ I have worked on the following in this iteration:
 
 
 ## Project Structure
-** Iteration 1 **
+
+Iteration 1
 
 ![classes.png](screenshots/iteration1/classes.png)
 ![layout.png](screenshots/iteration1/layout.png)
@@ -235,4 +236,36 @@ I updated the layout for each screen  login_fragment and signup_fragment. Added 
 - https://github.com/smarteist/Android-Image-Slider
 - https://github.com/hdodenhof/CircleImageView
 - https://github.com/Dhaval2404/ImagePicker
+
+
+**Iteration 2**
+
+- I have worked on the following in this iteration:
+- Implemented Room database
+- Validation for Login screen
+- Validation for Signup screen
+- Save user information in the database
+- Frainer List screen UI
+- Show list of users from DB
+- Fragment backstack handling
+- Store logged in user in Shared preference
+- Logout
+
+
+**I have used the following components:**
+
+Frainers screen - RecyclerView, Toolbar, ImageView, TextView, CardView
+
+**Screenshots**
+
+![login.png](screenshots/iteration1/login.png)
+![signup.png](screenshots/iteration1/signup.png)
+![myfrainers.png](screenshots/iteration2/myfrainers.png)
+![classes.png](screenshots/iteration2/classes.png)
+![layout.png](screenshots/iteration2/layout.png)
+
+In this iteration I mainly wanted to setup the Database and make sure users can login and signup and see the list of users in the DB. I created the Room database setup and created a viewmodel and repository for handling the User database. I also completed the validation for the login and signup screen so that if a user enters an incorrect password they will be prompted to enter the correct password. Also if a user tries to sign up with an existing user name it will show the toast message to try with a different username. At last, my frainers screen will show all the users existing in the database and allow users to logout. I plan to make the frainers UI much cleaner and also try to add capability to add images in the signup screen which will load up in the my frainer screen in the future iterations.
+
+## References
+https://developer.android.com/codelabs/android-room-with-a-view-kotlin#15
 

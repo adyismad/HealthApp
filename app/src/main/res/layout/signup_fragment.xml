@@ -4,7 +4,6 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryDarkColor"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -12,13 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
+                android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
@@ -31,22 +29,24 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Sign up"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:textColor="@color/primaryTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/submitBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:linksClickable="true"
+                android:padding="10dp"
                 android:text="Submit"
                 android:textColor="@color/primaryTextColor"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -109,6 +109,25 @@
                             android:id="@+id/usernameEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:hint="Username"
+                            android:inputType="textPersonName" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/nameLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/usernameLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/firstNameLastNameEt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:hint="First Name Last Name"
                             android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -121,9 +140,9 @@
                         android:layout_marginTop="12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/usernameLayout">
+                        app:layout_constraintTop_toBottomOf="@+id/nameLayout">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/passwordEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -142,7 +161,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/confirmPasswordEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -161,7 +180,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ageEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -189,13 +208,13 @@
                         app:layout_constraintTop_toBottomOf="@+id/genderTv">
 
                         <RadioButton
-                            android:id="@+id/favoriteButton"
+                            android:id="@+id/maleBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Male" />
 
                         <RadioButton
-                            android:id="@+id/likeButton"
+                            android:id="@+id/femaleBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Female" />
@@ -211,7 +230,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/gymLocationEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -230,7 +249,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/gymLocationLayout">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/gymDayTimeEt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -249,7 +268,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/gymDayTimeLayout">
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/partnerPrefEt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

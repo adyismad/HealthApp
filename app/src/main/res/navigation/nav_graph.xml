@@ -3,23 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/loginFragment"
+    tools:ignore="UnusedNavigation">
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="edu.bu.metcs.myproject.login.view.LoginFragment"
         android:label="Blank"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
         tools:layout="@layout/login_fragment">
 
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_myFrainerFragment"
+            app:destination="@+id/myFrainerFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/signupFragment"
         android:name="edu.bu.metcs.myproject.signup.SignupFragment"
         android:label="Signup"
-        tools:layout="@layout/signup_fragment" />
+        tools:layout="@layout/signup_fragment">
+
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@+id/loginFragment" />
+
+        <action
+            android:id="@+id/action_signupFragment_to_myFrainerFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"
+            app:destination="@+id/myFrainerFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/myFrainerFragment"
+        android:name="edu.bu.metcs.myproject.myfrainers.MyFrainersFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        tools:layout="@layout/frainers_fragment">
+
+        <action
+            android:id="@+id/action_myFrainerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>
