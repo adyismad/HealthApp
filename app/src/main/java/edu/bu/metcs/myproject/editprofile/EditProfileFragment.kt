@@ -1,4 +1,4 @@
-package edu.bu.metcs.myproject.signup
+package edu.bu.metcs.myproject.editprofile
 
 import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
@@ -21,9 +21,11 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hdodenhof.circleimageview.CircleImageView
 import edu.bu.metcs.myproject.*
+import edu.bu.metcs.myproject.myprofile.MyProfileViewModel
+import edu.bu.metcs.myproject.myprofile.MyProfileViewModelFactory
 import edu.bu.metcs.myproject.user.User
 
-class SignupFragment : Fragment() {
+class EditProfileFragment : Fragment() {
 
     private lateinit var userNameEt: TextInputEditText
     private lateinit var userNameLayout: TextInputLayout
@@ -43,14 +45,12 @@ class SignupFragment : Fragment() {
     private lateinit var gymDayTimeLayout: TextInputLayout
     private lateinit var partnerPrefLayout: TextInputLayout
     private lateinit var partnerPrefEt: TextInputEditText
-    private lateinit var submitBtn: AppCompatTextView
+    private lateinit var saveBtn: AppCompatTextView
     private lateinit var circleImageView: CircleImageView
     private lateinit var backButton: AppCompatImageView
 
-    private lateinit var user: User
-
-    private val signupViewModel: SignupViewModel by viewModels {
-        SignupViewModelFactory((activity?.application as FrainerApplication).repository)
+    private val profileViewModel: MyProfileViewModel by viewModels {
+        MyProfileViewModelFactory((activity?.application as FrainerApplication).repository)
     }
 
 
@@ -59,7 +59,7 @@ class SignupFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.signup_fragment, container, false)
+        val view = inflater.inflate(R.layout.edit_profile_fragment, container, false)
 
         userNameEt = view.findViewById(R.id.usernameEt)
         userNameLayout = view.findViewById(R.id.usernameLayout)
@@ -79,7 +79,7 @@ class SignupFragment : Fragment() {
         gymLocationLayout = view.findViewById(R.id.gymLocationLayout)
         partnerPrefEt = view.findViewById(R.id.partnerPrefEt)
         partnerPrefLayout = view.findViewById(R.id.partnerPrefLayout)
-        submitBtn = view.findViewById(R.id.submitBtn)
+        saveBtn = view.findViewById(R.id.saveBtn)
         circleImageView = view.findViewById(R.id.profile_image)
         backButton = view.findViewById(R.id.backButton)
         return view
@@ -93,15 +93,13 @@ class SignupFragment : Fragment() {
         }
 
         backButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_loginFragment)
+            Navigation.findNavController(view).navigate(R.id.action_editProfileFragment_to_profileFragment)
         }
 
-        submitBtn.setOnClickListener {
+        saveBtn.setOnClickListener {
 
             when {
-                TextUtils.isEmpty(userNameEt.text) -> {
-                    Toast.makeText(context, "Username cannot be empty", Toast.LENGTH_SHORT).show()
-                }
+
                 TextUtils.isEmpty(nameEt.text) -> {
                     Toast.makeText(context, "Name cannot be empty", Toast.LENGTH_SHORT).show()
                 }
@@ -117,7 +115,7 @@ class SignupFragment : Fragment() {
                 !maleRadioButton.isChecked && !femaleRadioButton.isChecked -> {
                     Toast.makeText(context, "Please select gender", Toast.LENGTH_SHORT).show()
                 }
-                TextUtils.isEmpty(gymDayTimeEt.text) -> {
+                TextUtils.isEmpty(gymLocationEt.text) -> {
                     Toast.makeText(context, "Gym location cannot be empty", Toast.LENGTH_SHORT).show()
                 }
                 TextUtils.isEmpty(gymDayTimeEt.text) -> {
@@ -132,28 +130,27 @@ class SignupFragment : Fragment() {
                 }
 
                 else -> {
-                    user = User(userNameEt.text.toString(), nameEt.text.toString(), passwordEt.text.toString(), maleRadioButton.isChecked,
-                            ageEt.text.toString(), gymLocationEt.text.toString(), gymDayTimeEt.text.toString(), partnerPrefEt.text.toString())
-                    signupViewModel.getUser(userNameEt.text.toString())
-                }
-            }
-        }
-
-        activity?.let {
-            signupViewModel.user.observe(it) {
-                if (it != null) {
-                    Toast.makeText(context, "Username already exists, please select different username", Toast.LENGTH_SHORT).show()
-
-                } else {
-                    SharePreferenceData.setSharedPrefString(context, "logged_user", user.userName)
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-                    signupViewModel.insert(user)
-                    Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_myFrainerFragment)
+                    profileViewModel.saveUser(User(userNameEt.text.toString(), nameEt.text.toString(), passwordEt.text.toString(), maleRadioButton.isChecked,
+                            ageEt.text.toString(), gymLocationEt.text.toString(), gymDayTimeEt.text.toString(), partnerPrefEt.text.toString()))
+                    Navigation.findNavController(view).navigate(R.id.action_editProfileFragment_to_profileFragment)
                 }
             }
         }
 
         (activity as MainActivity).setBottomNavigationVisibility(View.GONE)
+
+        SharePreferenceData.getSharedPrefString(context, "logged_user", "")?.let { profileViewModel.getUser(it) }
+        profileViewModel.user.observe(activity as MainActivity, {
+            userNameEt.setText(it.userName)
+            nameEt.setText(it.name)
+            passwordEt.setText(it.password)
+            confirmPasswordEt.setText(it.password)
+            ageEt.setText(it.age)
+            gymDayTimeEt.setText(it.daytime)
+            gymLocationEt.setText(it.location)
+            partnerPrefEt.setText(it.partnerPref)
+            if (it.male) maleRadioButton.isChecked = true else femaleRadioButton.isChecked = true
+        })
     }
 
     private fun selectImage() {

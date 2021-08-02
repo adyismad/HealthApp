@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.bu.metcs.myproject.FrainerApplication
+import edu.bu.metcs.myproject.MainActivity
 import edu.bu.metcs.myproject.R
 import edu.bu.metcs.myproject.SharePreferenceData
 
@@ -21,12 +22,10 @@ class MyFrainersFragment : Fragment() {
 
     private lateinit var adapter: MyFrainersAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var logoutBtn: AppCompatImageView
 
     private val frainerViewModel: MyFrainerViewModel by viewModels {
         MyFrainerViewModelFactory((activity?.application as FrainerApplication).repository)
     }
-
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -36,21 +35,17 @@ class MyFrainersFragment : Fragment() {
         val view = inflater.inflate(R.layout.frainers_fragment, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerView)
-        logoutBtn = view.findViewById(R.id.logoutBtn)
 
         activity?.let {
             frainerViewModel.users.observe(it, Observer {
                 adapter = MyFrainersAdapter(it)
-                recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+                recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 recyclerView.adapter = adapter
 
             })
         }
 
-        logoutBtn.setOnClickListener {
-            SharePreferenceData.clearAllPreference(context)
-            Navigation.findNavController(view).navigate(R.id.action_myFrainerFragment_to_loginFragment)
-        }
+        (activity as MainActivity).setBottomNavigationVisibility(View.VISIBLE)
 
         return view
     }

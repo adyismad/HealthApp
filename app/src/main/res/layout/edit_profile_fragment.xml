@@ -8,8 +8,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
         android:background="@color/primaryDarkColor"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Sign up"
+                android:text="Edit Profile"
                 android:textColor="@color/primaryTextColor"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -39,13 +39,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/submitBtn"
+                android:id="@+id/saveBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:linksClickable="true"
                 android:padding="10dp"
-                android:text="Submit"
+                android:text="Save"
                 android:textColor="@color/primaryTextColor"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -102,6 +102,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -110,6 +111,7 @@
                             android:id="@+id/usernameEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:enabled="false"
                             android:hint="Username"
                             android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>

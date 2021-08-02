@@ -189,8 +189,8 @@ The closest application which I found on the internet for Android was Fittup, th
 |---|---|---|
 |1|Initial project setup,Login screen, Signup screen  |Activity, Fragments,Circle Image Library, Architecture components |
 |2|My Frainers, Logout |Fragments, Imageviews, Progressbar, Glide Library, Shared preferences,  |
-|3|My Profile, Edit profile, Pending requests |Bottom navigation, architecture components, Shared preferences, Fragment, Material Design |
-|4|Notifications |Fragment |
+|3|My Profile, Edit profile, Pending requests, Frainer Detail |Bottom navigation, architecture components, Shared preferences, Fragment, Material Design |
+|4|Notifications, Accept, Reject Pending request |Fragment |
 |5|Refactor |Code cleanup, remove hard coded string, values, etc. |
 
 ## Requirement Analysis and Testing 
@@ -221,7 +221,7 @@ I have worked on the following in this iteration:
 
 ## Project Structure
 
-Iteration 1
+**Iteration 1**
 
 ![classes.png](screenshots/iteration1/classes.png)
 ![layout.png](screenshots/iteration1/layout.png)
@@ -240,7 +240,9 @@ I updated the layout for each screen  login_fragment and signup_fragment. Added 
 
 **Iteration 2**
 
-- I have worked on the following in this iteration:
+
+### I have worked on the following in this iteration:
+
 - Implemented Room database
 - Validation for Login screen
 - Validation for Signup screen
@@ -268,4 +270,33 @@ In this iteration I mainly wanted to setup the Database and make sure users can 
 
 ## References
 https://developer.android.com/codelabs/android-room-with-a-view-kotlin#15
+
+
+**Iteration 3**
+
+### I have worked on the following in this iteration
+
+- Implemented the profile screen
+- Implemented the edit profile screen
+- Implemented the pending request screen UI
+- Implemented the frainer detail screen
+- Moved logout in my Profile screen.
+- Handled navigation throughout the application
+- Bottom navigation
+
+** I have used the following components:**
+
+- BottomNavigationView, RecyclerView, TextView, ImageView, CardView, Fragment, SafeArgs
+
+**Screenshots**
+
+![login.png](screenshots/iteration3/login.png)
+![signup.png](screenshots/iteration3/signup.png)
+![frainers_list.png](screenshots/iteration3/frainers_list.png)
+![pending_request.png](screenshots/iteration3/pending_request.png)
+![profile.png](screenshots/iteration3/profile.png)
+![edit_profile.png](screenshots/iteration3/edit_profile.png)
+![classes.png](screenshots/iteration3/classes.png)
+![layout.png](screenshots/iteration3/layout.png)
+
 

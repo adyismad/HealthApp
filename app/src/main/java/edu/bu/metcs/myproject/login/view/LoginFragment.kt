@@ -17,10 +17,10 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import edu.bu.metcs.myproject.FrainerApplication
+import edu.bu.metcs.myproject.MainActivity
 import edu.bu.metcs.myproject.R
 import edu.bu.metcs.myproject.SharePreferenceData
 import edu.bu.metcs.myproject.login.model.SliderItem
-import edu.bu.metcs.myproject.user.LoggedInUser
 
 
 class LoginFragment : Fragment() {
@@ -95,12 +95,14 @@ class LoginFragment : Fragment() {
             userViewModel.user.observe(it, {
 
                 if (it != null) {
-                    SharePreferenceData.saveObject(context, "logged_user", LoggedInUser(it.userName, it.password))
+                    SharePreferenceData.setSharedPrefString(context, "logged_user", it.userName)
                     Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_myFrainerFragment)
                 } else {
                     Toast.makeText(context, "Please correct your username and password", Toast.LENGTH_SHORT).show()
                 }
             })
         }
+
+        (activity as MainActivity).setBottomNavigationVisibility(View.GONE)
     }
 }

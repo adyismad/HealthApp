@@ -1,4 +1,4 @@
-package edu.bu.metcs.myproject.signup
+package edu.bu.metcs.myproject.frainerdetail
 
 import androidx.lifecycle.*
 import edu.bu.metcs.myproject.user.User
@@ -9,7 +9,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class SignupViewModel(private val repository: UserRepository) : ViewModel() {
+class MyProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _user = MutableLiveData<User>()
     val user: LiveData<User> = _user
@@ -19,9 +19,6 @@ class SignupViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    fun insert(user: User) = viewModelScope.launch {
-        repository.insert(user)
-    }
 
     fun getUser(userName: String) {
         scope.launch {
@@ -30,11 +27,11 @@ class SignupViewModel(private val repository: UserRepository) : ViewModel() {
     }
 }
 
-class SignupViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
+class MyProfileViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SignupViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(MyProfileViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return SignupViewModel(repository) as T
+            return MyProfileViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

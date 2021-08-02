@@ -1,4 +1,4 @@
-package edu.bu.metcs.myproject.myfrainers
+package edu.bu.metcs.myproject.pendingrequests
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -7,16 +7,17 @@ import androidx.lifecycle.asLiveData
 import edu.bu.metcs.myproject.user.User
 import edu.bu.metcs.myproject.user.UserRepository
 
-class MyFrainerViewModel(repository: UserRepository) : ViewModel() {
+class PendingRequestViewModel(private val repository: UserRepository) : ViewModel() {
 
     val users: LiveData<List<User>> = repository.allUsers.asLiveData()
+
 }
 
-class MyFrainerViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
+class PendingRequestViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MyFrainerViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(PendingRequestViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return MyFrainerViewModel(repository) as T
+            return PendingRequestViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
