@@ -5,17 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
-import edu.bu.metcs.myproject.FrainerApplication
 import edu.bu.metcs.myproject.R
-import edu.bu.metcs.myproject.pendingrequests.PendingRequestViewModel
-import edu.bu.metcs.myproject.pendingrequests.PendingRequestViewModelFactory
-import edu.bu.metcs.myproject.user.User
+import edu.bu.metcs.myproject.data.User
 
 class FrainerDetailFragment : Fragment() {
 

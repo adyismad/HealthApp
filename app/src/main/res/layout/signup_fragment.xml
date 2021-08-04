@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:background="@color/primaryDarkColor"
+        android:background="@android:color/black"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout

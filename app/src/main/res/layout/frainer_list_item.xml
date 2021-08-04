@@ -117,6 +117,8 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Invite"
+            android:background="?android:selectableItemBackground"
+            android:focusable="true"
             android:textColor="@color/secondaryDarkColor"
             android:textSize="16sp"
             android:textStyle="bold"

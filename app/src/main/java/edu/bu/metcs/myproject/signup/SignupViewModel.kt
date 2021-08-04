@@ -1,8 +1,8 @@
 package edu.bu.metcs.myproject.signup
 
 import androidx.lifecycle.*
-import edu.bu.metcs.myproject.user.User
-import edu.bu.metcs.myproject.user.UserRepository
+import edu.bu.metcs.myproject.data.User
+import edu.bu.metcs.myproject.data.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

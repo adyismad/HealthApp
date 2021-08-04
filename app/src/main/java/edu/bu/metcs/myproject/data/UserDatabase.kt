@@ -1,4 +1,4 @@
-package edu.bu.metcs.myproject.user
+package edu.bu.metcs.myproject.data
 
 import android.content.Context
 import androidx.room.Database

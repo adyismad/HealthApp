@@ -23,7 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import edu.bu.metcs.myproject.*
 import edu.bu.metcs.myproject.myprofile.MyProfileViewModel
 import edu.bu.metcs.myproject.myprofile.MyProfileViewModelFactory
-import edu.bu.metcs.myproject.user.User
+import edu.bu.metcs.myproject.data.User
 
 class EditProfileFragment : Fragment() {
 
@@ -139,8 +139,9 @@ class EditProfileFragment : Fragment() {
 
         (activity as MainActivity).setBottomNavigationVisibility(View.GONE)
 
-        SharePreferenceData.getSharedPrefString(context, "logged_user", "")?.let { profileViewModel.getUser(it) }
-        profileViewModel.user.observe(activity as MainActivity, {
+        val bundle = arguments
+        if (bundle != null) {
+            val it: User = bundle.getSerializable("User") as User
             userNameEt.setText(it.userName)
             nameEt.setText(it.name)
             passwordEt.setText(it.password)
@@ -150,7 +151,7 @@ class EditProfileFragment : Fragment() {
             gymLocationEt.setText(it.location)
             partnerPrefEt.setText(it.partnerPref)
             if (it.male) maleRadioButton.isChecked = true else femaleRadioButton.isChecked = true
-        })
+        }
     }
 
     private fun selectImage() {

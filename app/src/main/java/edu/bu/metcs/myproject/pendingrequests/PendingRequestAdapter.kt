@@ -7,9 +7,10 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import edu.bu.metcs.myproject.FrainerUtils
 import edu.bu.metcs.myproject.R
-import edu.bu.metcs.myproject.myfrainers.MyFrainersFragmentDirections
-import edu.bu.metcs.myproject.user.User
+import edu.bu.metcs.myproject.data.User
+
 
 class PendingRequestAdapter(private val users: List<User>) : RecyclerView.Adapter<PendingRequestAdapter.ViewHolder>() {
 
@@ -32,6 +33,15 @@ class PendingRequestAdapter(private val users: List<User>) : RecyclerView.Adapte
                 val action = PendingRequestFragmentDirections.actionPendingRequestFragmentToFrainerDetailFragment(user)
                 Navigation.findNavController(itemView).navigate(action)
             }
+
+            itemView.findViewById<AppCompatTextView>(R.id.acceptBtn).setOnClickListener {
+                FrainerUtils.getNotification("${user.name} has accepted your request", itemView.context,itemView.resources.getColor(R.color.positive_green))?.let { it1 -> FrainerUtils.scheduleNotification(it1, 2000, itemView.context) };
+            }
+
+            itemView.findViewById<AppCompatTextView>(R.id.rejectBtn).setOnClickListener {
+                FrainerUtils.getNotification("${user.name} has rejected your request", itemView.context, itemView.resources.getColor(R.color.negative))?.let { it1 -> FrainerUtils.scheduleNotification(it1, 2000, itemView.context) };
+            }
+
         }
     }
 

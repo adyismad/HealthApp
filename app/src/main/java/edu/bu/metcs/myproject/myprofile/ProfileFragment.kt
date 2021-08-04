@@ -12,9 +12,7 @@ import androidx.navigation.Navigation
 import edu.bu.metcs.myproject.FrainerApplication
 import edu.bu.metcs.myproject.MainActivity
 import edu.bu.metcs.myproject.R
-import edu.bu.metcs.myproject.SharePreferenceData
-import edu.bu.metcs.myproject.frainerdetail.FrainerDetailFragment
-import edu.bu.metcs.myproject.myfrainers.MyFrainersFragment
+import edu.bu.metcs.myproject.data.SharePreferenceData
 
 class ProfileFragment : Fragment() {
 
@@ -34,10 +32,13 @@ class ProfileFragment : Fragment() {
         val logoutBtn = view.findViewById<AppCompatImageView>(R.id.logoutBtn)
         val editProfileBtn = view.findViewById<AppCompatImageView>(R.id.editBtn)
 
-        (activity?.application as FrainerApplication).getUsername()?.let { profileViewModel.getUser(it) }
+        val userName = SharePreferenceData.getSharedPrefString(context, "logged_user", "")
+        userName?.let {
+            profileViewModel.getUser(it)
+        }
+
         activity?.let {
             profileViewModel.user.observe(it, {
-
                 it.name.let {
                     nameTv.text = it
                 }
@@ -47,6 +48,11 @@ class ProfileFragment : Fragment() {
                 gymDayTimeTv.text = it.daytime
                 partnerPrefTv.text = it.partnerPref
 
+                editProfileBtn.setOnClickListener { view ->
+                    val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(it)
+                    Navigation.findNavController(view).navigate(action)
+                }
+
             })
         }
 
@@ -55,9 +61,6 @@ class ProfileFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_loginFragment)
         }
 
-        editProfileBtn.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_editProfileFragment)
-        }
         return view
     }
 

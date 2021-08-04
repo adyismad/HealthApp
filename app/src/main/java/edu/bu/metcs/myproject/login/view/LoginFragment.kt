@@ -19,7 +19,7 @@ import com.smarteist.autoimageslider.SliderView
 import edu.bu.metcs.myproject.FrainerApplication
 import edu.bu.metcs.myproject.MainActivity
 import edu.bu.metcs.myproject.R
-import edu.bu.metcs.myproject.SharePreferenceData
+import edu.bu.metcs.myproject.data.SharePreferenceData
 import edu.bu.metcs.myproject.login.model.SliderItem
 
 
@@ -95,8 +95,11 @@ class LoginFragment : Fragment() {
             userViewModel.user.observe(it, {
 
                 if (it != null) {
-                    SharePreferenceData.setSharedPrefString(context, "logged_user", it.userName)
-                    Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_myFrainerFragment)
+                    activity?.runOnUiThread {
+                        SharePreferenceData.setSharedPrefString(context, "logged_user", it.userName)
+                        val action = LoginFragmentDirections.actionLoginFragmentToMyFrainerFragment(it.userName)
+                        Navigation.findNavController(view).navigate(action)
+                    }
                 } else {
                     Toast.makeText(context, "Please correct your username and password", Toast.LENGTH_SHORT).show()
                 }

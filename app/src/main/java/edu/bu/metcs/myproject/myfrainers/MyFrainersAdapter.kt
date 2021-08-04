@@ -1,16 +1,26 @@
 package edu.bu.metcs.myproject.myfrainers
 
+import android.app.AlarmManager
+import android.app.Notification
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.app.NotificationCompat
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import edu.bu.metcs.myproject.FrainerUtils
+import edu.bu.metcs.myproject.FrainerUtils.getNotification
+import edu.bu.metcs.myproject.FrainerUtils.scheduleNotification
+import edu.bu.metcs.myproject.MainActivity
+import edu.bu.metcs.myproject.MyNotificationPublisher
 import edu.bu.metcs.myproject.R
-import edu.bu.metcs.myproject.frainerdetail.FrainerDetailFragment
-import edu.bu.metcs.myproject.user.User
+import edu.bu.metcs.myproject.data.User
 
 class MyFrainersAdapter(private val users: List<User>) : RecyclerView.Adapter<MyFrainersAdapter.ViewHolder>() {
 
@@ -25,6 +35,7 @@ class MyFrainersAdapter(private val users: List<User>) : RecyclerView.Adapter<My
             itemView.findViewById<AppCompatTextView>(R.id.gymDayTime).text = user.daytime
             itemView.findViewById<AppCompatTextView>(R.id.ageTv).text = user.age
             itemView.findViewById<AppCompatTextView>(R.id.inviteBtn).setOnClickListener {
+                getNotification("${user.name} invited you to join", itemView.context, itemView.resources.getColor(R.color.positive_green))?.let { it1 -> scheduleNotification(it1, 2000, itemView.context) };
             }
 
             Glide.with(itemView.context)

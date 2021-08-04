@@ -1,8 +1,8 @@
 package edu.bu.metcs.myproject
 
 import android.app.Application
-import edu.bu.metcs.myproject.user.UserRepository
-import edu.bu.metcs.myproject.user.UserRoomDatabase
+import edu.bu.metcs.myproject.data.UserRepository
+import edu.bu.metcs.myproject.data.UserRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -19,10 +19,6 @@ class FrainerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-    }
-
-    fun getUsername(): String? {
-        return SharePreferenceData.getSharedPrefString(applicationContext, "logged_user", "")
     }
 
     companion object {

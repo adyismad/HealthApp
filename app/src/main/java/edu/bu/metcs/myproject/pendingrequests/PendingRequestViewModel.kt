@@ -1,16 +1,29 @@
 package edu.bu.metcs.myproject.pendingrequests
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import edu.bu.metcs.myproject.user.User
-import edu.bu.metcs.myproject.user.UserRepository
+import androidx.lifecycle.*
+import edu.bu.metcs.myproject.data.User
+import edu.bu.metcs.myproject.data.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class PendingRequestViewModel(private val repository: UserRepository) : ViewModel() {
 
-    val users: LiveData<List<User>> = repository.allUsers.asLiveData()
+    private val _users = MutableLiveData<List<User>>()
+    val users: LiveData<List<User>> = _users
 
+    private val parentJob = Job()
+    private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.Default
+    private val scope = CoroutineScope(coroutineContext)
+
+
+    fun getUsers(userName: String) {
+        scope.launch {
+            _users.postValue(repository.getUsers(userName))
+        }
+    }
 }
 
 class PendingRequestViewModelFactory(private val repository: UserRepository) : ViewModelProvider.Factory {

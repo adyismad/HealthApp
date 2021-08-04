@@ -57,6 +57,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/image1"
+                app:civ_border_color="@color/secondaryLightColor"
+                app:civ_border_overlay="true"
+                app:civ_border_width="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar" />

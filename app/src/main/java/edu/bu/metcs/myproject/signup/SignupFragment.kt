@@ -21,7 +21,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.hdodenhof.circleimageview.CircleImageView
 import edu.bu.metcs.myproject.*
-import edu.bu.metcs.myproject.user.User
+import edu.bu.metcs.myproject.data.SharePreferenceData
+import edu.bu.metcs.myproject.data.User
 
 class SignupFragment : Fragment() {
 
@@ -145,10 +146,13 @@ class SignupFragment : Fragment() {
                     Toast.makeText(context, "Username already exists, please select different username", Toast.LENGTH_SHORT).show()
 
                 } else {
-                    SharePreferenceData.setSharedPrefString(context, "logged_user", user.userName)
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
-                    signupViewModel.insert(user)
-                    Navigation.findNavController(view).navigate(R.id.action_signupFragment_to_myFrainerFragment)
+                    activity?.runOnUiThread {
+                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                        signupViewModel.insert(user)
+                        SharePreferenceData.setSharedPrefString(context, "logged_user", user.userName)
+                        val action = SignupFragmentDirections.actionSignupFragmentToMyFrainerFragment(user.userName)
+                        Navigation.findNavController(view).navigate(action)
+                    }
                 }
             }
         }

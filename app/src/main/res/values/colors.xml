@@ -8,4 +8,6 @@
     <color name="secondaryDarkColor">#53585f</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
+    <color name="positive_green">#689F38</color>
+    <color name="negative">#F44336</color>
 </resources>

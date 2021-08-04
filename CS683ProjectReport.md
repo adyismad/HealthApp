@@ -299,4 +299,31 @@ https://developer.android.com/codelabs/android-room-with-a-view-kotlin#15
 ![classes.png](screenshots/iteration3/classes.png)
 ![layout.png](screenshots/iteration3/layout.png)
 
+**Iteration 4**
 
+### I have worked on the following in this iteration
+
+- Updated background color
+- Passed the user object from the nav graph and get from bundle instead of making get user call
+- Trigger notification when user select Invite
+- Trigger notification when user select accept/reject
+
+** I have used the following components:**
+
+- Notification, NotificationManager, AlarmManager, BroadCastReceiver
+
+**Screenshots**
+
+![login.png](screenshots/iteration4/login.png)
+![login2.png](screenshots/iteration4/login2.png)
+![signup.png](screenshots/iteration4/signup.png)
+![frainers.png](screenshots/iteration4/frainers.png)
+![pending.png](screenshots/iteration4/pending.png)
+![profile.png](screenshots/iteration4/profile.png)
+![editprofile.png](screenshots/iteration4/editprofile.png)
+![profiledetail.png](screenshots/iteration4/profiledetail.png)
+![invitenotification.png](screenshots/iteration4/invitenotification.png)
+![acceptnotification.png](screenshots/iteration4/acceptnotification.png)
+![rejectednotification.png](screenshots/iteration4/rejectednotification.png)
+![classes.png](screenshots/iteration4/classes.png)
+![resources.png](screenshots/iteration4/resources.png)
