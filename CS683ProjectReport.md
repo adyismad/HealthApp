@@ -340,20 +340,3 @@ https://developer.android.com/codelabs/android-room-with-a-view-kotlin#15
     5. Reuse method by moving to utils.
     6. Tested the app to make sure everything is working from end to end.
 
-
-**Screenshots**
-
-![login.png](screenshots/iteration4/login.png)
-![login2.png](screenshots/iteration4/login2.png)
-![signup.png](screenshots/iteration4/signup.png)
-![frainers.png](screenshots/iteration4/frainers.png)
-![pending.png](screenshots/iteration4/pending.png)
-![profile.png](screenshots/iteration4/profile.png)
-![editprofile.png](screenshots/iteration4/editprofile.png)
-![profiledetail.png](screenshots/iteration4/profiledetail.png)
-![invitenotification.png](screenshots/iteration4/invitenotification.png)
-![acceptnotification.png](screenshots/iteration4/acceptnotification.png)
-![rejectednotification.png](screenshots/iteration4/rejectednotification.png)
-![classes.png](screenshots/iteration4/classes.png)
-![resources.png](screenshots/iteration4/resources.png)
-
