@@ -1,9 +1,8 @@
 package edu.bu.metcs.myproject.data
 
 import androidx.annotation.WorkerThread
-import edu.bu.metcs.myproject.FrainerApplication
 
-class UserRepository(private val userDao: UserDao, application: FrainerApplication) {
+class UserRepository(private val userDao: UserDao) {
 
     // Room executes all queries on a separate thread.
     // Observed Flow will notify the observer when the data has changed.
@@ -13,7 +12,7 @@ class UserRepository(private val userDao: UserDao, application: FrainerApplicati
     // off the main thread.
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun insert(word: User) {
+    fun insert(word: User) {
         userDao.insert(word)
     }
 

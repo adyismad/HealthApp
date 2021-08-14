@@ -10,43 +10,17 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import de.hdodenhof.circleimageview.CircleImageView
 import edu.bu.metcs.myproject.*
 import edu.bu.metcs.myproject.data.SharePreferenceData
 import edu.bu.metcs.myproject.data.User
+import kotlinx.android.synthetic.main.signup_fragment.*
 
 class SignupFragment : Fragment() {
-
-    private lateinit var userNameEt: TextInputEditText
-    private lateinit var userNameLayout: TextInputLayout
-    private lateinit var nameEt: TextInputEditText
-    private lateinit var nameLayout: TextInputLayout
-    private lateinit var passwordEt: TextInputEditText
-    private lateinit var passwordLayout: TextInputLayout
-    private lateinit var confirmPasswordEt: TextInputEditText
-    private lateinit var confirmPasswordLayout: TextInputLayout
-    private lateinit var ageEt: TextInputEditText
-    private lateinit var ageLayout: TextInputLayout
-    private lateinit var maleRadioButton: RadioButton
-    private lateinit var femaleRadioButton: RadioButton
-    private lateinit var gymLocationEt: TextInputEditText
-    private lateinit var gymLocationLayout: TextInputLayout
-    private lateinit var gymDayTimeEt: TextInputEditText
-    private lateinit var gymDayTimeLayout: TextInputLayout
-    private lateinit var partnerPrefLayout: TextInputLayout
-    private lateinit var partnerPrefEt: TextInputEditText
-    private lateinit var submitBtn: AppCompatTextView
-    private lateinit var circleImageView: CircleImageView
-    private lateinit var backButton: AppCompatImageView
 
     private lateinit var user: User
 
@@ -54,42 +28,18 @@ class SignupFragment : Fragment() {
         SignupViewModelFactory((activity?.application as FrainerApplication).repository)
     }
 
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.signup_fragment, container, false)
-
-        userNameEt = view.findViewById(R.id.usernameEt)
-        userNameLayout = view.findViewById(R.id.usernameLayout)
-        nameEt = view.findViewById(R.id.firstNameLastNameEt)
-        nameLayout = view.findViewById(R.id.nameLayout)
-        passwordEt = view.findViewById(R.id.passwordEt)
-        passwordLayout = view.findViewById(R.id.passwordLayout)
-        confirmPasswordEt = view.findViewById(R.id.confirmPasswordEt)
-        confirmPasswordLayout = view.findViewById(R.id.confirmPasswordLayout)
-        ageEt = view.findViewById(R.id.ageEt)
-        ageLayout = view.findViewById(R.id.ageLayout)
-        maleRadioButton = view.findViewById(R.id.maleBtn)
-        femaleRadioButton = view.findViewById(R.id.femaleBtn)
-        gymDayTimeEt = view.findViewById(R.id.gymDayTimeEt)
-        gymDayTimeLayout = view.findViewById(R.id.gymDayTimeLayout)
-        gymLocationEt = view.findViewById(R.id.gymLocationEt)
-        gymLocationLayout = view.findViewById(R.id.gymLocationLayout)
-        partnerPrefEt = view.findViewById(R.id.partnerPrefEt)
-        partnerPrefLayout = view.findViewById(R.id.partnerPrefLayout)
-        submitBtn = view.findViewById(R.id.submitBtn)
-        circleImageView = view.findViewById(R.id.profile_image)
-        backButton = view.findViewById(R.id.backButton)
-        return view
+        return inflater.inflate(R.layout.signup_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        circleImageView.setOnClickListener {
+        profile_image.setOnClickListener {
             selectImage()
         }
 
@@ -100,42 +50,42 @@ class SignupFragment : Fragment() {
         submitBtn.setOnClickListener {
 
             when {
-                TextUtils.isEmpty(userNameEt.text) -> {
-                    Toast.makeText(context, "Username cannot be empty", Toast.LENGTH_SHORT).show()
+                TextUtils.isEmpty(usernameEt.text) -> {
+                    Toast.makeText(context, getString(R.string.user_cannot_be_empty), Toast.LENGTH_SHORT).show()
                 }
-                TextUtils.isEmpty(nameEt.text) -> {
-                    Toast.makeText(context, "Name cannot be empty", Toast.LENGTH_SHORT).show()
+                TextUtils.isEmpty(firstNameLastNameEt.text) -> {
+                    Toast.makeText(context, getString(R.string.name_cannot_empty), Toast.LENGTH_SHORT).show()
                 }
                 TextUtils.isEmpty(passwordEt.text) -> {
-                    Toast.makeText(context, "Password cannot be empty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.password_cannot_empty), Toast.LENGTH_SHORT).show()
                 }
                 TextUtils.isEmpty(confirmPasswordEt.text) -> {
-                    Toast.makeText(context, "Confirm password cannot be empty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.confirm_password_empty), Toast.LENGTH_SHORT).show()
                 }
                 TextUtils.isEmpty(ageEt.text) -> {
-                    Toast.makeText(context, "Age cannot be empty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.age_cannot_empty), Toast.LENGTH_SHORT).show()
                 }
-                !maleRadioButton.isChecked && !femaleRadioButton.isChecked -> {
-                    Toast.makeText(context, "Please select gender", Toast.LENGTH_SHORT).show()
-                }
-                TextUtils.isEmpty(gymDayTimeEt.text) -> {
-                    Toast.makeText(context, "Gym location cannot be empty", Toast.LENGTH_SHORT).show()
+                !maleBtn.isChecked && !femaleBtn.isChecked -> {
+                    Toast.makeText(context, getString(R.string.select_gender), Toast.LENGTH_SHORT).show()
                 }
                 TextUtils.isEmpty(gymDayTimeEt.text) -> {
-                    Toast.makeText(context, "Gym day/time cannot be empty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.gym_location_cannot_empty), Toast.LENGTH_SHORT).show()
+                }
+                TextUtils.isEmpty(gymDayTimeEt.text) -> {
+                    Toast.makeText(context, getString(R.string.gym_day_time_cannot_empty), Toast.LENGTH_SHORT).show()
                 }
                 TextUtils.isEmpty(partnerPrefEt.text) -> {
-                    Toast.makeText(context, "Partner preference cannot be empty", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.partner_pref_cannot_empty), Toast.LENGTH_SHORT).show()
                 }
 
                 !passwordEt.text?.toString().equals(confirmPasswordEt.text?.toString()) -> {
-                    Toast.makeText(context, "Password and confirm password does not match", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.password_confirm_match), Toast.LENGTH_SHORT).show()
                 }
 
                 else -> {
-                    user = User(userNameEt.text.toString(), nameEt.text.toString(), passwordEt.text.toString(), maleRadioButton.isChecked,
+                    user = User(usernameEt.text.toString(), firstNameLastNameEt.text.toString(), passwordEt.text.toString(), maleBtn.isChecked,
                             ageEt.text.toString(), gymLocationEt.text.toString(), gymDayTimeEt.text.toString(), partnerPrefEt.text.toString())
-                    signupViewModel.getUser(userNameEt.text.toString())
+                    signupViewModel.getUser(usernameEt.text.toString())
                 }
             }
         }
@@ -143,13 +93,13 @@ class SignupFragment : Fragment() {
         activity?.let {
             signupViewModel.user.observe(it) {
                 if (it != null) {
-                    Toast.makeText(context, "Username already exists, please select different username", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.username_already_exists), Toast.LENGTH_SHORT).show()
 
                 } else {
                     activity?.runOnUiThread {
-                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.success), Toast.LENGTH_SHORT).show()
                         signupViewModel.insert(user)
-                        SharePreferenceData.setSharedPrefString(context, "logged_user", user.userName)
+                        SharePreferenceData.setSharedPrefString(context, FrainerUtils.LOGGED_USER, user.userName)
                         val action = SignupFragmentDirections.actionSignupFragmentToMyFrainerFragment(user.userName)
                         Navigation.findNavController(view).navigate(action)
                     }
@@ -161,14 +111,14 @@ class SignupFragment : Fragment() {
     }
 
     private fun selectImage() {
-        val options = arrayOf<CharSequence>("Take Photo", "Cancel")
+        val options = arrayOf<CharSequence>(getString(R.string.take_photo), getString(R.string.cancel))
         val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(context)
-        builder.setTitle("Choose your profile picture")
+        builder.setTitle(getString(R.string.choose_profile_picture))
         builder.setItems(options) { dialog, item ->
-            if (options[item] == "Take Photo") {
+            if (options[item] == getString(R.string.take_photo)) {
                 val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 startActivityForResult(takePicture, 0)
-            } else if (options[item] == "Cancel") {
+            } else if (options[item] == getString(R.string.cancel)) {
                 dialog.dismiss()
             }
         }

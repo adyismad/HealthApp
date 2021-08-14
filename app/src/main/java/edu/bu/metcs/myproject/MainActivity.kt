@@ -9,7 +9,7 @@ import edu.bu.metcs.myproject.data.SharePreferenceData
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val navGraph = graphInflater.inflate(R.navigation.nav_graph)
         val navController = navHostFragment.navController
 
-        val loggedInUser = SharePreferenceData.getSharedPrefString(this, "logged_user", "")
+        val loggedInUser = SharePreferenceData.getSharedPrefString(this, FrainerUtils.LOGGED_USER, "")
         val destination = if (loggedInUser?.isNotEmpty() == true) R.id.myFrainerFragment else R.id.loginFragment
         navGraph.startDestination = destination
         navController.graph = navGraph

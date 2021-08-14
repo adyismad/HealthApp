@@ -1,27 +1,16 @@
 package edu.bu.metcs.myproject.myfrainers
 
-import android.app.AlarmManager
-import android.app.Notification
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.bu.metcs.myproject.FrainerApplication
+import edu.bu.metcs.myproject.FrainerUtils
 import edu.bu.metcs.myproject.MainActivity
-import edu.bu.metcs.myproject.MainActivity.Companion.NOTIFICATION_CHANNEL_ID
-import edu.bu.metcs.myproject.MainActivity.Companion.default_notification_channel_id
-import edu.bu.metcs.myproject.MyNotificationPublisher
 import edu.bu.metcs.myproject.R
 import edu.bu.metcs.myproject.data.SharePreferenceData
 
@@ -50,7 +39,7 @@ class MyFrainersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userName = SharePreferenceData.getSharedPrefString(context, "logged_user", "")
+        val userName = SharePreferenceData.getSharedPrefString(context, FrainerUtils.LOGGED_USER, "")
         val bundle = arguments
 
         if (bundle != null) {
@@ -61,7 +50,7 @@ class MyFrainersFragment : Fragment() {
         }
 
         activity?.let {
-            frainerViewModel.users.observe(it, Observer {
+            frainerViewModel.users.observe(it, {
                 adapter = MyFrainersAdapter(it)
                 recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 recyclerView.adapter = adapter

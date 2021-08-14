@@ -18,7 +18,6 @@ class PendingRequestFragment : Fragment() {
     private lateinit var adapter: PendingRequestAdapter
     private var recyclerView: RecyclerView? = null
 
-
     private val pendingRequestViewModel: PendingRequestViewModel by viewModels {
         PendingRequestViewModelFactory((activity?.application as FrainerApplication).repository)
     }

@@ -4,13 +4,13 @@
     <item
         android:id="@+id/myFrainerFragment"
         android:icon="@drawable/ic_person"
-        android:title="My Frainers" />
+        android:title="@string/my_frainers" />
     <item
         android:id="@+id/pendingRequestFragment"
         android:icon="@drawable/ic_pending"
-        android:title="Pending Request" />
+        android:title="@string/pending_request" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"
-        android:title="My Profile" />
+        android:title="@string/my_profile" />
 </menu>

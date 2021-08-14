@@ -9,8 +9,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:background="@android:color/black"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
+                android:padding="@dimen/dimen_12dp"
                 android:src="@drawable/ic_back_arrow"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -29,9 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Sign up"
+                android:text="@string/sign_up"
                 android:textColor="@color/primaryTextColor"
-                android:textSize="20dp"
+                android:textSize="@dimen/text_size_20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:linksClickable="true"
-                android:padding="10dp"
-                android:text="Submit"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/submit"
                 android:textColor="@color/primaryTextColor"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -68,10 +68,10 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="@dimen/dimen_150dp"
+                android:layout_height="@dimen/dimen_150dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
                 android:src="@drawable/ic_person"
                 app:civ_border_color="#FF000000"
                 app:civ_border_overlay="false"
@@ -84,10 +84,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:elevation="8dp"
-                app:cardCornerRadius="12dp"
-                app:contentPadding="20dp">
+                android:layout_margin="@dimen/dimen_10dp"
+                android:elevation="@dimen/dimen_8dp"
+                app:cardCornerRadius="@dimen/dimen_12dp"
+                app:contentPadding="@dimen/dimen_20dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout"
@@ -110,7 +110,7 @@
                             android:id="@+id/usernameEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Username"
+                            android:hint="@string/username"
                             android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +120,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/dimen_12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/usernameLayout">
@@ -129,7 +129,7 @@
                             android:id="@+id/firstNameLastNameEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="First Name Last Name"
+                            android:hint="@string/first_name_last_name"
                             android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,7 +138,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/dimen_12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/nameLayout">
@@ -147,7 +147,7 @@
                             android:id="@+id/passwordEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Password"
+                            android:hint="@string/password"
                             android:inputType="textPassword" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -157,7 +157,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/dimen_12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
@@ -166,7 +166,7 @@
                             android:id="@+id/confirmPasswordEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Confirm Password"
+                            android:hint="@string/confirm_password"
                             android:inputType="textPassword" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -176,7 +176,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/dimen_12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout">
@@ -185,7 +185,7 @@
                             android:id="@+id/ageEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Age"
+                            android:hint="@string/age"
                             android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -194,8 +194,8 @@
                         android:id="@+id/genderTv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Gender"
+                        android:padding="@dimen/dimen_10dp"
+                        android:text="@string/gender"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ageLayout" />
@@ -212,13 +212,13 @@
                             android:id="@+id/maleBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Male" />
+                            android:text="@string/male" />
 
                         <RadioButton
                             android:id="@+id/femaleBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Female" />
+                            android:text="@string/female" />
 
                     </RadioGroup>
 
@@ -235,7 +235,7 @@
                             android:id="@+id/gymLocationEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Gym Location"
+                            android:hint="@string/gym_location"
                             android:inputType="textPostalAddress" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -244,8 +244,8 @@
                         android:id="@+id/gymDayTimeLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_height="@dimen/dimen_100dp"
+                        android:layout_marginTop="@dimen/dimen_12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/gymLocationLayout">
@@ -254,7 +254,7 @@
                             android:id="@+id/gymDayTimeEt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Gym Day / Time"
+                            android:hint="@string/gym_day_time"
                             android:inputType="textMultiLine" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -263,8 +263,8 @@
                         android:id="@+id/partnerPrefLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="0dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_height="@dimen/dimen_100dp"
+                        android:layout_marginTop="@dimen/dimen_12dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/gymDayTimeLayout">
@@ -273,7 +273,7 @@
                             android:id="@+id/partnerPrefEt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Partner Preferences"
+                            android:hint="@string/partner_preferences"
                             android:inputType="textMultiLine" />
 
                     </com.google.android.material.textfield.TextInputLayout>

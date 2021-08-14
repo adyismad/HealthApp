@@ -327,3 +327,33 @@ https://developer.android.com/codelabs/android-room-with-a-view-kotlin#15
 ![rejectednotification.png](screenshots/iteration4/rejectednotification.png)
 ![classes.png](screenshots/iteration4/classes.png)
 ![resources.png](screenshots/iteration4/resources.png)
+
+**Iteration 5**
+
+### I have worked on the following in this iteration
+
+- Refactor the following
+    1. Removed hard coded strings and moved to strings.xml
+    2. Removed hard coded dimensions and moved to dimens.xml
+    3. Removed hard coded colors and moved to colors.xml
+    4. Refactor code to have proper modifer types.
+    5. Reuse method by moving to utils.
+    6. Tested the app to make sure everything is working from end to end.
+
+
+**Screenshots**
+
+![login.png](screenshots/iteration4/login.png)
+![login2.png](screenshots/iteration4/login2.png)
+![signup.png](screenshots/iteration4/signup.png)
+![frainers.png](screenshots/iteration4/frainers.png)
+![pending.png](screenshots/iteration4/pending.png)
+![profile.png](screenshots/iteration4/profile.png)
+![editprofile.png](screenshots/iteration4/editprofile.png)
+![profiledetail.png](screenshots/iteration4/profiledetail.png)
+![invitenotification.png](screenshots/iteration4/invitenotification.png)
+![acceptnotification.png](screenshots/iteration4/acceptnotification.png)
+![rejectednotification.png](screenshots/iteration4/rejectednotification.png)
+![classes.png](screenshots/iteration4/classes.png)
+![resources.png](screenshots/iteration4/resources.png)
+

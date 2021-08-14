@@ -19,7 +19,6 @@ class MyProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-
     fun getUser(userName: String) {
         scope.launch {
             _user.postValue(repository.getUser(userName))

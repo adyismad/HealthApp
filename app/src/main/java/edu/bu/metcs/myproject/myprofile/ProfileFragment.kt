@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import edu.bu.metcs.myproject.FrainerApplication
+import edu.bu.metcs.myproject.FrainerUtils
 import edu.bu.metcs.myproject.MainActivity
 import edu.bu.metcs.myproject.R
 import edu.bu.metcs.myproject.data.SharePreferenceData
+import kotlinx.android.synthetic.main.profile_fragment.*
 
 class ProfileFragment : Fragment() {
 
@@ -21,18 +21,13 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.profile_fragment, container, false)
+        return inflater.inflate(R.layout.profile_fragment, container, false)
+    }
 
-        val nameTv = view.findViewById<AppCompatTextView>(R.id.nameTv)
-        val ageTv = view.findViewById<AppCompatTextView>(R.id.ageTv)
-        val genderTv = view.findViewById<AppCompatTextView>(R.id.genderTv)
-        val gymLocationTv = view.findViewById<AppCompatTextView>(R.id.gymLocationTv)
-        val gymDayTimeTv = view.findViewById<AppCompatTextView>(R.id.gymDayTimeTv)
-        val partnerPrefTv = view.findViewById<AppCompatTextView>(R.id.partnerPrefTv)
-        val logoutBtn = view.findViewById<AppCompatImageView>(R.id.logoutBtn)
-        val editProfileBtn = view.findViewById<AppCompatImageView>(R.id.editBtn)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val userName = SharePreferenceData.getSharedPrefString(context, "logged_user", "")
+        val userName = SharePreferenceData.getSharedPrefString(context, FrainerUtils.LOGGED_USER, "")
         userName?.let {
             profileViewModel.getUser(it)
         }
@@ -43,16 +38,15 @@ class ProfileFragment : Fragment() {
                     nameTv.text = it
                 }
                 ageTv.text = it.age
-                genderTv.text = if (it.male) "Male" else "Female"
+                genderTv.text = if (it.male) getString(R.string.male) else getString(R.string.female)
                 gymLocationTv.text = it.location
                 gymDayTimeTv.text = it.daytime
                 partnerPrefTv.text = it.partnerPref
 
-                editProfileBtn.setOnClickListener { view ->
+                editBtn.setOnClickListener { view ->
                     val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(it)
                     Navigation.findNavController(view).navigate(action)
                 }
-
             })
         }
 
@@ -61,7 +55,6 @@ class ProfileFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_profileFragment_to_loginFragment)
         }
 
-        return view
     }
 
     override fun onResume() {

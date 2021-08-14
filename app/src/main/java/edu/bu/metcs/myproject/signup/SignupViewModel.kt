@@ -19,7 +19,7 @@ class SignupViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    fun insert(user: User) = viewModelScope.launch {
+    fun insert(user: User) = scope.launch {
         repository.insert(user)
     }
 

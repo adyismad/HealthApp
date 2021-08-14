@@ -16,7 +16,7 @@ object SharePreferenceData {
         val settings = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = settings.edit()
         editor.putString(key, value)
-        editor.commit()
+        editor.apply()
     }
 
     /**
@@ -36,7 +36,7 @@ object SharePreferenceData {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = sharedPreferences.edit()
         editor.clear()
-        editor.commit()
+        editor.apply()
     }
 
 }

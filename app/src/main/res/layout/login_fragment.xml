@@ -64,7 +64,7 @@
                         android:id="@+id/userEt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Username"
+                        android:hint="@string/username"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,7 +82,7 @@
                         android:id="@+id/passEt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:inputType="textPassword" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -95,7 +95,7 @@
                     android:background="@color/primaryLightColor"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:text="Login"
+                    android:text="@string/login"
                     android:textColor="@color/primaryTextColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -115,7 +115,7 @@
                         android:id="@+id/dont_have_account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Don't have an account?"
+                        android:text="@string/don_t_have_an_account"
                         android:textColor="@color/secondaryTextColor" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -125,7 +125,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        android:text=" Register"
+                        android:text="@string/register"
                         android:textColor="@color/primaryDarkColor"
                         android:textStyle="bold" />
 

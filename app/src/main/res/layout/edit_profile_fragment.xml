@@ -8,14 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:minHeight="?actionBarSize"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:minHeight="?actionBarSize">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="@dimen/dimen_20dp"
             android:src="@drawable/ic_back_arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -24,9 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Edit Profile"
+            android:text="@string/edit_profile"
             android:textColor="@color/secondaryLightColor"
-            android:textSize="20dp"
+            android:textSize="@dimen/text_size_20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +38,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:linksClickable="true"
-            android:padding="10dp"
-            android:text="Save"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/save"
             android:textColor="@color/secondaryLightColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/dimen_20dp"
                 android:src="@drawable/ic_person"
                 app:civ_border_color="#FF000000"
                 app:civ_border_overlay="false"
@@ -77,10 +77,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/dimen_10dp"
                 android:elevation="8dp"
                 app:cardCornerRadius="12dp"
-                app:contentPadding="20dp">
+                app:contentPadding="@dimen/dimen_20dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout"
@@ -105,7 +105,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:hint="Username"
+                            android:hint="@string/username"
                             android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,7 @@
                             android:id="@+id/firstNameLastNameEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="First Name Last Name"
+                            android:hint="@string/first_name_last_name"
                             android:inputType="textPersonName" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,7 +142,7 @@
                             android:id="@+id/passwordEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Password"
+                            android:hint="@string/password"
                             android:inputType="textPassword" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -161,7 +161,7 @@
                             android:id="@+id/confirmPasswordEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Confirm Password"
+                            android:hint="@string/confirm_password"
                             android:inputType="textPassword" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -180,7 +180,7 @@
                             android:id="@+id/ageEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Age"
+                            android:hint="@string/age"
                             android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -189,8 +189,8 @@
                         android:id="@+id/genderTv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Gender"
+                        android:padding="@dimen/dimen_10dp"
+                        android:text="@string/gender"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ageLayout" />
@@ -207,13 +207,13 @@
                             android:id="@+id/maleBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Male" />
+                            android:text="@string/male" />
 
                         <RadioButton
                             android:id="@+id/femaleBtn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Female" />
+                            android:text="@string/female" />
 
                     </RadioGroup>
 
@@ -230,7 +230,7 @@
                             android:id="@+id/gymLocationEt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Gym Location"
+                            android:hint="@string/gym_location"
                             android:inputType="textPostalAddress" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -249,7 +249,7 @@
                             android:id="@+id/gymDayTimeEt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Gym Day / Time"
+                            android:hint="@string/gym_day_time"
                             android:inputType="textMultiLine" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -268,7 +268,7 @@
                             android:id="@+id/partnerPrefEt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:hint="Partner Preferences"
+                            android:hint="@string/partner_preferences"
                             android:inputType="textMultiLine" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -278,6 +278,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </LinearLayout>

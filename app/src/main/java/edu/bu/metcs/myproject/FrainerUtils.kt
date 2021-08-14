@@ -10,6 +10,8 @@ import androidx.core.app.NotificationCompat
 
 object FrainerUtils {
 
+    const val LOGGED_USER = "logged_user"
+
     fun scheduleNotification(notification: Notification, delay: Int, context: Context) {
         val notificationIntent = Intent(context, MyNotificationPublisher::class.java)
         notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, 1)
@@ -20,7 +22,7 @@ object FrainerUtils {
         alarmManager?.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent)
     }
 
-    fun getNotification(content: String, context: Context, color: Int): Notification? {
+    fun getNotification(content: String, context: Context, color: Int): Notification {
         val builder: NotificationCompat.Builder = context.let { NotificationCompat.Builder(it, MainActivity.default_notification_channel_id) }
         builder.setContentTitle("Frainer Invite")
         builder.setContentText(content)
@@ -30,4 +32,5 @@ object FrainerUtils {
         builder.setChannelId(MainActivity.NOTIFICATION_CHANNEL_ID)
         return builder.build()
     }
+
 }

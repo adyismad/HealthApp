@@ -1,24 +1,14 @@
 package edu.bu.metcs.myproject.myfrainers
 
-import android.app.AlarmManager
-import android.app.Notification
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.app.NotificationCompat
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import edu.bu.metcs.myproject.FrainerUtils
 import edu.bu.metcs.myproject.FrainerUtils.getNotification
 import edu.bu.metcs.myproject.FrainerUtils.scheduleNotification
-import edu.bu.metcs.myproject.MainActivity
-import edu.bu.metcs.myproject.MyNotificationPublisher
 import edu.bu.metcs.myproject.R
 import edu.bu.metcs.myproject.data.User
 
@@ -31,17 +21,17 @@ class MyFrainersAdapter(private val users: List<User>) : RecyclerView.Adapter<My
 
         fun bindItems(user: User, position: Int) {
             itemView.findViewById<AppCompatTextView>(R.id.nameTv).text = user.name
-            itemView.findViewById<AppCompatTextView>(R.id.genderTv).text = if (user.male) "Male" else "Female"
+            itemView.findViewById<AppCompatTextView>(R.id.genderTv).text = if (user.male) itemView.context.getString(R.string.male) else itemView.context.getString(R.string.female)
             itemView.findViewById<AppCompatTextView>(R.id.gymDayTime).text = user.daytime
             itemView.findViewById<AppCompatTextView>(R.id.ageTv).text = user.age
             itemView.findViewById<AppCompatTextView>(R.id.inviteBtn).setOnClickListener {
-                getNotification("${user.name} invited you to join", itemView.context, itemView.resources.getColor(R.color.positive_green))?.let { it1 -> scheduleNotification(it1, 2000, itemView.context) };
+                getNotification("${user.name} invited you to join", itemView.context, itemView.resources.getColor(R.color.positive_green))?.let { it1 -> scheduleNotification(it1, 2000, itemView.context) }
             }
 
             Glide.with(itemView.context)
                     .load(if (position > colors.size - 1) R.drawable.image1 else colors[position])
                     .override(150, 150)
-                    .into(itemView.findViewById(R.id.frainer_img));
+                    .into(itemView.findViewById(R.id.frainer_img))
 
             itemView.setOnClickListener {
                 val action = MyFrainersFragmentDirections.actionMyFrainerFragmentToFrainerDetailFragment(user)
@@ -55,7 +45,7 @@ class MyFrainersAdapter(private val users: List<User>) : RecyclerView.Adapter<My
     }
 
     override fun onBindViewHolder(holder: MyFrainersAdapter.ViewHolder, position: Int) {
-        holder.bindItems(users.get(position), position)
+        holder.bindItems(users[position], position)
     }
 
     override fun getItemCount(): Int = users.size

@@ -21,13 +21,13 @@ class PendingRequestAdapter(private val users: List<User>) : RecyclerView.Adapte
 
         fun bindItems(user: User, position: Int) {
             itemView.findViewById<AppCompatTextView>(R.id.nameTv).text = user.name
-            itemView.findViewById<AppCompatTextView>(R.id.genderTv).text = if (user.male) "Male" else "Female"
+            itemView.findViewById<AppCompatTextView>(R.id.genderTv).text = if (user.male) itemView.context.getString(R.string.male) else itemView.context.getString(R.string.female)
             itemView.findViewById<AppCompatTextView>(R.id.ageTv).text = user.age
 
             Glide.with(itemView.context)
                     .load(if (position > colors.size - 1) R.drawable.image1 else colors[position])
                     .override(150, 250)
-                    .into(itemView.findViewById(R.id.frainer_img));
+                    .into(itemView.findViewById(R.id.frainer_img))
 
             itemView.setOnClickListener {
                 val action = PendingRequestFragmentDirections.actionPendingRequestFragmentToFrainerDetailFragment(user)
@@ -35,11 +35,11 @@ class PendingRequestAdapter(private val users: List<User>) : RecyclerView.Adapte
             }
 
             itemView.findViewById<AppCompatTextView>(R.id.acceptBtn).setOnClickListener {
-                FrainerUtils.getNotification("${user.name} has accepted your request", itemView.context,itemView.resources.getColor(R.color.positive_green))?.let { it1 -> FrainerUtils.scheduleNotification(it1, 2000, itemView.context) };
+                FrainerUtils.getNotification("${user.name} has accepted your request", itemView.context,itemView.resources.getColor(R.color.positive_green))?.let { it1 -> FrainerUtils.scheduleNotification(it1, 2000, itemView.context) }
             }
 
             itemView.findViewById<AppCompatTextView>(R.id.rejectBtn).setOnClickListener {
-                FrainerUtils.getNotification("${user.name} has rejected your request", itemView.context, itemView.resources.getColor(R.color.negative))?.let { it1 -> FrainerUtils.scheduleNotification(it1, 2000, itemView.context) };
+                FrainerUtils.getNotification("${user.name} has rejected your request", itemView.context, itemView.resources.getColor(R.color.negative))?.let { it1 -> FrainerUtils.scheduleNotification(it1, 2000, itemView.context) }
             }
 
         }
@@ -50,7 +50,7 @@ class PendingRequestAdapter(private val users: List<User>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: PendingRequestAdapter.ViewHolder, position: Int) {
-        holder.bindItems(users.get(position), position)
+        holder.bindItems(users[position], position)
     }
 
     override fun getItemCount(): Int = users.size

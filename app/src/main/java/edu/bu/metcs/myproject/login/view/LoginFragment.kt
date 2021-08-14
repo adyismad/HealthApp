@@ -6,21 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.google.android.material.textfield.TextInputEditText
 import com.sandeep.frainer.login.view.SliderAdapter
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import edu.bu.metcs.myproject.FrainerApplication
+import edu.bu.metcs.myproject.FrainerUtils
 import edu.bu.metcs.myproject.MainActivity
 import edu.bu.metcs.myproject.R
 import edu.bu.metcs.myproject.data.SharePreferenceData
 import edu.bu.metcs.myproject.login.model.SliderItem
+import kotlinx.android.synthetic.main.login_fragment.*
 
 
 class LoginFragment : Fragment() {
@@ -29,11 +28,6 @@ class LoginFragment : Fragment() {
         LoginViewModelFactory((activity?.application as FrainerApplication).repository)
     }
 
-    private lateinit var userNameEt: TextInputEditText
-    private lateinit var passwordEt: TextInputEditText
-    private lateinit var registerBtn: AppCompatTextView
-
-    private var sliderView: SliderView? = null
     private lateinit var adapter: SliderAdapter
 
     override fun onCreateView(
@@ -41,20 +35,14 @@ class LoginFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.login_fragment, container, false)
-        sliderView = view.findViewById(R.id.imageSlider)
-        return view
+        return inflater.inflate(R.layout.login_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = SliderAdapter(context)
 
-        userNameEt = view.findViewById(R.id.userEt)
-        passwordEt = view.findViewById(R.id.passEt)
-        registerBtn = view.findViewById(R.id.registerBtn)
-
-        sliderView?.apply {
+        imageSlider?.apply {
             setSliderAdapter(adapter)
             setIndicatorAnimation(IndicatorAnimationType.WORM)
             setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
@@ -84,10 +72,10 @@ class LoginFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment)
         }
 
-        view.findViewById<AppCompatButton>(R.id.loginBtn).setOnClickListener {
+        loginBtn.setOnClickListener {
 
-            if (userNameEt.text?.isNotEmpty() == true && passwordEt.text?.isNotEmpty() == true) {
-                userViewModel.getUser(userNameEt.text.toString(), passwordEt.text.toString())
+            if (userEt.text?.isNotEmpty() == true && passEt.text?.isNotEmpty() == true) {
+                userViewModel.getUser(userEt.text.toString(), passEt.text.toString())
             }
         }
 
@@ -96,12 +84,12 @@ class LoginFragment : Fragment() {
 
                 if (it != null) {
                     activity?.runOnUiThread {
-                        SharePreferenceData.setSharedPrefString(context, "logged_user", it.userName)
+                        SharePreferenceData.setSharedPrefString(context, FrainerUtils.LOGGED_USER, it.userName)
                         val action = LoginFragmentDirections.actionLoginFragmentToMyFrainerFragment(it.userName)
                         Navigation.findNavController(view).navigate(action)
                     }
                 } else {
-                    Toast.makeText(context, "Please correct your username and password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, getString(R.string.please_correct_username_password), Toast.LENGTH_SHORT).show()
                 }
             })
         }

@@ -17,7 +17,7 @@ interface UserDao {
     fun getUser(userName: String): User?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(user: User)
+    fun insert(user: User)
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
     suspend fun update(user: User)
